@@ -1,0 +1,51 @@
+Arguments: 
+  /usr/local/Cellar/node/8.4.0/bin/node /usr/local/Cellar/yarn/0.27.5_1/libexec/bin/yarn.js
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  0.27.5
+
+Node version: 
+  8.4.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "blockheads",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+      "node": "8.1.1",
+      "npm": "5.0.3"
+    },
+    "scripts": {
+      "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.16.2",
+      "passport": "^0.4.0",
+      "passport-google-oauth20": "^1.0.0",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/derekalia/Desktop/blockheads/package.json: Unexpected token } in JSON at position 351
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/0.27.5_1/libexec/lib/yarn-cli.js:747:57
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/0.27.5_1/libexec/lib/yarn-cli.js:91:30)
+      at /usr/local/Cellar/yarn/0.27.5_1/libexec/lib/yarn-cli.js:102:13
+      at <anonymous>
