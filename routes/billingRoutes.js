@@ -1,18 +1,33 @@
-const keys = require('../config/keys')
+const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 
 module.exports = app => {
-  app.post('/api/stripe', (req, res) => {
-    console.log(req.body)
+  app.post('/api/stripe', async (req, res) => {
     
-//     let stripeObj = await stripe.customers.create(
-//         {
-//           description: profile.displayName
-//         },
-//         function(err, customer) {
-//           console.log(err);
-//         }
-//       );
+    // console.log(req.body)
+    // console.log('req.user', req.user);
 
+    await stripe.customers.update(req.user.stripeId, {
+      source: req.body.id
+    });
+
+    const sub = await stripe.subscriptions.create({
+      customer: req.user.stripeId,
+      items: [
+        {
+          plan: 'basic-monthly'
+        }
+      ]
+    });
+
+    console.log('sub ', sub);
+
+    if(sub.id){
+        req.user.plan = 'paid'
+        await req.user.save()
+    }
+   
+    res.send(user)
+    
   });
 };

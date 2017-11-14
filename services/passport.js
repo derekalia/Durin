@@ -1,9 +1,10 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('../config/keys');
+const keys = require('../config/keys')
+const stripe = require('stripe')(keys.stripeSecretKey);
 const mongoose = require('mongoose');
-
 const User = mongoose.model('users');
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
@@ -29,7 +30,14 @@ passport.use(
       if (user) {
         done(null, user);
       } else {
-        const newUser = await new User({ googleId: profile.id, name: profile.displayName, stripe:'' }).save();
+       
+      const customer = await stripe.customers.create({ 
+          description: profile.displayName
+      });
+
+        console.log(customer)
+
+        const newUser = await new User({ googleId: profile.id, name: profile.displayName, stripeId:customer.id }).save();
         done(null, newUser);
       }
     }
