@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Payment from './Payment'
 class Pricing extends React.Component {
   state = {};
 
@@ -7,7 +7,8 @@ class Pricing extends React.Component {
     return (
       <div>
         <div>Pricing</div>
-        <div>$39/month</div>                
+        <div>$39/month</div>    
+        <div><Payment/></div>            
       </div>
     );
   }

@@ -29,7 +29,7 @@ passport.use(
       if (user) {
         done(null, user);
       } else {
-        const newUser = await new User({ googleId: profile.id, name: profile.displayName }).save();
+        const newUser = await new User({ googleId: profile.id, name: profile.displayName, stripe:'' }).save();
         done(null, newUser);
       }
     }
