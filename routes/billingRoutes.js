@@ -5,10 +5,7 @@ const requireLogin = require('../middlewares/requiresLogin')
 
 module.exports = app => {
   app.post('/api/stripe', requireLogin ,async (req, res) => {
-    
-    // console.log(req.body)
-    // console.log('req.user', req.user);
-
+   
     await stripe.customers.update(req.user.stripeId, {
       source: req.body.id
     });
@@ -25,7 +22,8 @@ module.exports = app => {
     console.log('sub ', sub);
 
     if(sub.id){
-        req.user.plan = 'paid'
+        req.user.status = 'paid'
+        req.user.plan = 'basic-monthly'
         await req.user.save()
     }
    

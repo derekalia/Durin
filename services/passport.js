@@ -1,21 +1,19 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('../config/keys')
+const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
-
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+  done(null, user.id);
 });
 
-passport.deserializeUser((id,done)=>{
-    User.findById(id)
-    .then(user=>{
-        done(null,user);
-    })
-})
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
 
 passport.use(
   new GoogleStrategy(
@@ -26,18 +24,22 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-      const user = await User.findOne({ googleId: profile.id });
+      const user = await User.findOne({ authToken: profile.id });
       if (user) {
         done(null, user);
       } else {
-       
-      const customer = await stripe.customers.create({ 
+        //create stipe customer
+        const customer = await stripe.customers.create({
           description: profile.displayName
-      });
+        });
+        console.log('stripe passport ', customer);
 
-        console.log(customer)
-
-        const newUser = await new User({ googleId: profile.id, name: profile.displayName, stripeId:customer.id }).save();
+        //create user in db
+        const newUser = await new User({
+          authToken: profile.id,
+          name: profile.displayName,
+          stripeId: customer.id
+        }).save();
         done(null, newUser);
       }
     }
