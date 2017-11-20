@@ -10,7 +10,8 @@ const courseSchema = new Schema({
   votes: String,
   length: Number,
   image: String,
-  _user: { type: Schema.Types.ObjectId, ref: 'User' }
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
+  dateCreated: {type:Date, default:Date.now()}, 
 });
 
-mongoose.model('course', courseSchema);
+mongoose.model('courses', courseSchema);
