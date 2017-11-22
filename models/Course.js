@@ -12,6 +12,7 @@ const courseSchema = new Schema({
   image: String,
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
   dateCreated: {type:Date, default:Date.now()}, 
+  dateUpdated: {type:Date, default:Date.now()}, 
 });
 
 mongoose.model('courses', courseSchema);

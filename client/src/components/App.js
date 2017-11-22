@@ -6,6 +6,7 @@ import Courses from './Courses';
 import Join from './Join';
 import Login from './Login';
 import Pricing from './Pricing';
+import AddCourse from './Courses/AddCourse'
 
 import {connect} from 'react-redux'
 import * as actions from '../actions';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/join" component={Join} />
             <Route path="/login" component={Login} />
+            <Route path="/add" component={AddCourse} />
             <Route path="/pricing" component={Pricing} />
             <Route path="/courses" component={Courses} />
           </Switch>

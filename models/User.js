@@ -9,12 +9,11 @@ const userSchema = new Schema({
     authToken:String,
     email:String,
     password:String,
-    courses:String,
     stripeId:String,
-    plan:String,
+    plan:{type:String, default: ''},
     status: {type:String, default: 'new'},
     courses: [courseSchema],
-    dateCreated: Date, 
+    dateCreated: {type:Date, default:Date.now()}, 
 });
 
 mongoose.model('users', userSchema);

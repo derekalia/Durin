@@ -27,7 +27,7 @@ module.exports = app => {
         await req.user.save()
     }
    
-    res.send(user)
+    res.send(req.user)
     
   });
 };
