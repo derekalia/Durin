@@ -1,15 +1,12 @@
 import React from 'react';
 
-
-class CourseField extends React.Component {
-  render() {
-    return (
-      <div>
-      CourseField
-        
-      </div>
-    );
-  }
-}
-
-export default CourseField;
+export default ({ input, label,meta }) => {
+  console.log(input);
+  return (
+    <div>
+        <label>{label}</label>
+      <input {...input} />
+      {meta.touched && meta.error}
+    </div>
+  );
+};

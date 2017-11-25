@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const courseSchema = new Schema({
-  id: String,
+const courseSchema = new Schema({  
   title: String,
   description: String,
   source: String,
-  creator: String,
+  author: String,
   votes: String,
   length: Number,
   image: String,
