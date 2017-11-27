@@ -7,8 +7,10 @@ import Join from './Join';
 import Login from './Login';
 import Pricing from './Pricing';
 import CourseAdd from './Courses/CourseAdd';
+import Course from './Course'
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import styled from 'styled-components'
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +18,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <AppOuter>
         <Router>
           <div>
             <Header />
@@ -27,10 +29,11 @@ class App extends Component {
               <Route path="/add" component={CourseAdd} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/courses" component={Courses} />
+              <Route path="/course/:id" component={Course} />
             </Switch>
           </div>
         </Router>
-      </div>
+      </AppOuter>
     );
   }
 }
@@ -44,3 +47,8 @@ class App extends Component {
 // }
 
 export default connect(null, actions)(App);
+
+
+const AppOuter = styled.div`
+font-family: 'Lato', sans-serif;
+`

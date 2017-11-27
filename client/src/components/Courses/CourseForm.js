@@ -16,6 +16,7 @@ class CourseForm extends React.Component {
         <Field label="Course image" type="text" name="image" component={CourseField} />
         <Field label="Video" type="text" name="video" component={CourseField} />
         <Field label="Video Length" type="text" name="length" component={CourseField} />
+        <Field label="Link Title" type="text" name="linkTitle" component={CourseField} />
       </div>
     );
   }
@@ -30,12 +31,7 @@ class CourseForm extends React.Component {
             this.props.onCourseSubmit();
           })}
         >
-          {this.renderFields()}
-          
-
-          <Player>
-            <source src="https://s3-us-west-1.amazonaws.com/blockheads/small.mp4" />
-          </Player>
+          {this.renderFields()}          
           <button type="submit">Submit</button>
         </form>
         <Link to="/">

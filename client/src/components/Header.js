@@ -15,25 +15,27 @@ class Header extends React.Component {
         return <a href="/auth/google">Login</a>;
       default:
         return [
-          <li key="1">{this.props.auth.name}</li>,
-          <li key="2">
+          <HeaderItem>
+            <Link to="/courses">Courses</Link>
+          </HeaderItem>,
+          <HeaderItem>
             <Link to="/add">Add Course</Link>
-          </li>,
-          <li key="3">
+          </HeaderItem>,
+          <HeaderItem>{this.props.auth.name}</HeaderItem>,
+          <HeaderItem>
             <a href="/api/logout">Logout</a>
-          </li>
+          </HeaderItem>
         ];
     }
   }
 
   render() {
     return (
-      <HeaderHolder>
-        <div>
+      <HeaderHolder name="HeaderHolder">
+        <HeaderTitle name="HeaderTitle">
           <Link to={this.props.auth ? '/courses' : '/'}>Blockheads</Link>
-        </div>
-        <div>Login</div>
-        <div>{this.renderContent()}</div>
+        </HeaderTitle>
+        <HeaderItemHolder>{this.renderContent()}</HeaderItemHolder>
       </HeaderHolder>
     );
   }
@@ -46,6 +48,30 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps)(Header);
 
 const HeaderHolder = styled.div`
-  display:flex,
-  flex-direction:row
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #d8d8d8;
+  justify-content: space-between;
+  margin-left: -8px;
+  align-items: center;
+`;
+const HeaderTitle = styled.div`
+  font-size: 23px;
+  color: black;
+  text-decoration: none;
+  margin-left: 10px;
+`;
+
+const HeaderItem = styled.div`
+  width: 100px;
+`;
+
+const HeaderItemHolder = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
