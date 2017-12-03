@@ -10,20 +10,38 @@ class Header extends React.Component {
     console.log(this.props.auth);
     switch (this.props.auth) {
       case null:
-        return;
+        return <div>loading</div>;
       case false:
-        return <a href="/auth/google">Login</a>;
+        return [
+          <HeaderItem>
+            <LinkStyle to="/courses">Courses</LinkStyle>
+          </HeaderItem>,
+          <HeaderItem>
+            <LinkStyle to="/pricing">Pricing</LinkStyle>
+          </HeaderItem>,
+          <HeaderItem>
+            <ALinkStyle href="/auth/google">Login</ALinkStyle>
+          </HeaderItem>,
+          <HeaderItem>
+            <JoinButton>
+              {' '}
+              <LinkStyle style={{ color: 'white', fontWeight: 'bold' }} to="/join">
+                Join
+              </LinkStyle>
+            </JoinButton>
+          </HeaderItem>
+        ];
       default:
         return [
           <HeaderItem>
-            <Link to="/courses">Courses</Link>
+            <LinkStyle to="/courses">Courses</LinkStyle>
           </HeaderItem>,
           <HeaderItem>
-            <Link to="/add">Add Course</Link>
+            <LinkStyle to="/add">Add Course</LinkStyle>
           </HeaderItem>,
           <HeaderItem>{this.props.auth.name}</HeaderItem>,
           <HeaderItem>
-            <a href="/api/logout">Logout</a>
+            <ALinkStyle href="/api/logout">Logout</ALinkStyle>
           </HeaderItem>
         ];
     }
@@ -33,7 +51,7 @@ class Header extends React.Component {
     return (
       <HeaderHolder name="HeaderHolder">
         <HeaderTitle name="HeaderTitle">
-          <Link to={this.props.auth ? '/courses' : '/'}>Blockheads</Link>
+          <LogoLinkStyle to={this.props.auth ? '/courses' : '/'}>qkBoot</LogoLinkStyle>
         </HeaderTitle>
         <HeaderItemHolder>{this.renderContent()}</HeaderItemHolder>
       </HeaderHolder>
@@ -55,7 +73,7 @@ const HeaderHolder = styled.div`
   top: 0;
   width: 100%;
   height: 50px;
-  background-color: #d8d8d8;
+  background-color: white;
   justify-content: space-between;
   margin-left: -8px;
   align-items: center;
@@ -69,9 +87,55 @@ const HeaderTitle = styled.div`
 
 const HeaderItem = styled.div`
   width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HeaderItemHolder = styled.div`
   display: flex;
   flex-direction: row;
+  margin-right: 10px;
+`;
+
+const LinkStyle = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  &:hover {
+    color: red;
+  }
+`;
+
+const ALinkStyle = styled.a`
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  &:hover {
+    color: red;
+  }
+`;
+
+const LogoLinkStyle = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+`;
+
+const JoinButton = styled.div`
+  background: rgba(224, 82, 160, 1);
+  background: -moz-linear-gradient(left, rgba(224, 82, 160, 1) 0%, rgba(241, 92, 66, 1) 100%);
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(0%, rgba(224, 82, 160, 1)),
+    color-stop(100%, rgba(241, 92, 66, 1))
+  );
+  background: -webkit-linear-gradient(left, rgba(224, 82, 160, 1) 0%, rgba(241, 92, 66, 1) 100%);
+  background: linear-gradient(to right, rgba(224, 82, 160, 1) 0%, rgba(241, 92, 66, 1) 100%);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 61px;
 `;
