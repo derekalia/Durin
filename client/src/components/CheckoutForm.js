@@ -52,7 +52,7 @@ background: -webkit-linear-gradient(left, rgba(224, 82, 160, 1) 0%, rgba(241, 92
 background: linear-gradient(to right, rgba(224, 82, 160, 1) 0%, rgba(241, 92, 66, 1) 100%);
 text-align: center;
 padding: 13px;
-border-radius: 10px;
+border-radius: 5px;
 border: none;
 color: white;
 font-weight: bold;

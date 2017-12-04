@@ -22,6 +22,7 @@ class App extends Component {
         <Router>
           <div>
             <Header />
+            <PushNav name="pushNav" />
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route path="/join" component={Join} />
@@ -51,4 +52,8 @@ export default connect(null, actions)(App);
 
 const AppOuter = styled.div`
 font-family: 'Lato', sans-serif;
+`
+
+const PushNav = styled.div`
+margin-top:70px;
 `

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import durin from '../media/durin_black.svg';
 
 class Header extends React.Component {
   state = {};
 
   renderContent() {
-    console.log(this.props.auth);
     switch (this.props.auth) {
       case null:
         return <div>loading</div>;
@@ -20,39 +20,46 @@ class Header extends React.Component {
             <LinkStyle to="/pricing">Pricing</LinkStyle>
           </HeaderItem>,
           <HeaderItem>
-            <ALinkStyle href="/auth/google">Login</ALinkStyle>
+            <LinkStyle to="/login">Login</LinkStyle>
           </HeaderItem>,
           <HeaderItem>
-            <JoinButton>
-              {' '}
-              <LinkStyle style={{ color: 'white', fontWeight: 'bold' }} to="/join">
-                Join
-              </LinkStyle>
-            </JoinButton>
+            <LinkStyle style={{ color: 'white', fontWeight: 'bold' }} to="/join">
+              <JoinButton>Join</JoinButton>
+            </LinkStyle>
           </HeaderItem>
         ];
       default:
-        return [
-          <HeaderItem>
-            <LinkStyle to="/courses">Courses</LinkStyle>
-          </HeaderItem>,
-          <HeaderItem>
-            <LinkStyle to="/add">Add Course</LinkStyle>
-          </HeaderItem>,
-          <HeaderItem>{this.props.auth.name}</HeaderItem>,
-          <HeaderItem>
-            <ALinkStyle href="/api/logout">Logout</ALinkStyle>
-          </HeaderItem>
-        ];
+        return (
+          <HeaderItemHolder>
+            <HeaderItem>
+              <LinkStyle to="/courses">Courses</LinkStyle>
+            </HeaderItem>
+            {this.props.auth.status !== 'paid' && (
+              <HeaderItem>
+                <LinkStyle to="/pricing">Pricing</LinkStyle>
+              </HeaderItem>
+            )}
+            <HeaderItem>
+              <LinkStyle to="/add">Add Course</LinkStyle>
+            </HeaderItem>
+            <HeaderItem>{this.props.auth.name}</HeaderItem>
+            <HeaderItem>
+              <ALinkStyle href="/api/logout">Logout</ALinkStyle>
+            </HeaderItem>
+          </HeaderItemHolder>
+        );
     }
   }
 
   render() {
     return (
       <HeaderHolder name="HeaderHolder">
-        <HeaderTitle name="HeaderTitle">
-          <LogoLinkStyle to={this.props.auth ? '/courses' : '/'}>qkBoot</LogoLinkStyle>
-        </HeaderTitle>
+        <LeftHolder>
+          <Logo src={durin} />
+          <HeaderTitle name="HeaderTitle">
+            <LogoLinkStyle to={this.props.auth ? '/courses' : '/'}>Durin</LogoLinkStyle>
+          </HeaderTitle>
+        </LeftHolder>
         <HeaderItemHolder>{this.renderContent()}</HeaderItemHolder>
       </HeaderHolder>
     );
@@ -72,7 +79,7 @@ const HeaderHolder = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
+  // height: 50px;
   background-color: white;
   justify-content: space-between;
   margin-left: -8px;
@@ -82,7 +89,8 @@ const HeaderTitle = styled.div`
   font-size: 23px;
   color: black;
   text-decoration: none;
-  margin-left: 10px;
+
+  align-self: center;
 `;
 
 const HeaderItem = styled.div`
@@ -122,6 +130,11 @@ const LogoLinkStyle = styled(Link)`
   font-weight: bold;
   font-size: 30px;
 `;
+const Logo = styled.img`
+  margin: 10px;
+  width: 45px;
+  height: 45px;
+`;
 
 const JoinButton = styled.div`
   background: rgba(224, 82, 160, 1);
@@ -138,4 +151,9 @@ const JoinButton = styled.div`
   padding: 10px;
   border-radius: 10px;
   width: 61px;
+`;
+
+const LeftHolder = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
