@@ -10,8 +10,7 @@ class Course extends React.Component {
   };
 
   componentWillMount = async () => {
-    const deets = await axios.get('/api/course_details/' + this.props.match.params.id);
-    console.log(deets.data);
+    const deets = await axios.get('/api/course_details/' + this.props.match.params.id);    
     this.setState({ course: deets.data });
   };
 

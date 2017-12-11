@@ -10,13 +10,15 @@ class CourseForm extends React.Component {
     return (
       <div>
         <Field label="Title" type="text" name="title" component={CourseField} />
-        <Field label="Author" type="text" name="author" component={CourseField} />
+        <Field label="Category" type="text" name="category" component={CourseField} />
+        <Field label="Author" type="text" name="author" component={CourseField} />        
         <Field label="Description" type="text" name="description" component={CourseField} />
         <Field label="Course Content" type="text" name="content" component={CourseField} />
         <Field label="Course image" type="text" name="image" component={CourseField} />
         <Field label="Video" type="text" name="video" component={CourseField} />
         <Field label="Video Length" type="text" name="length" component={CourseField} />
         <Field label="Link Title" type="text" name="linkTitle" component={CourseField} />
+        <Field label="Free" type="radio" name="free" component={CourseField} />
       </div>
     );
   }
@@ -49,6 +51,9 @@ const validate = values => {
   }
   if (!values.author) {
     errors.author = 'You must provide a author';
+  }    
+  if (!values.category) {
+    errors.category = 'You must provide a category';
   }
   if (!values.description) {
     errors.description = 'You must provide a description';

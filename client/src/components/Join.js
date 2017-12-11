@@ -10,8 +10,7 @@ class Join extends React.Component {
       <JoinHolder>
         <Title>Sign Up</Title>
         <JoinBox>
-          <AuthHolder>
-            
+          <AuthHolder>            
             <a href="/auth/google"><ButtonImg src={googleAuth}/></a>
             <a href="/auth/google"><ButtonImg src={GithubAuth}/></a>
             {/* <AuthServiceButton href="/auth/google">Sign in with Github</AuthServiceButton> */}

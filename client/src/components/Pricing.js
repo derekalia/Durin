@@ -1,5 +1,5 @@
 import React from 'react';
-import Payment from './Payment';
+import Payment from './Payment/Payment';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

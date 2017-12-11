@@ -4,7 +4,7 @@ import { injectStripe } from 'react-stripe-elements';
 import CardSection from './CardSection';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import styled from 'styled-components'
 
 class CheckoutForm extends React.Component {

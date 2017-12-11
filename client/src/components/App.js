@@ -11,6 +11,7 @@ import Course from './Course'
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import styled from 'styled-components'
+import Footer from './Footer.js'
 
 class App extends Component {
   componentDidMount() {
@@ -21,8 +22,7 @@ class App extends Component {
       <AppOuter>
         <Router>
           <div>
-            <Header />
-            <PushNav name="pushNav" />
+            <Header />            
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route path="/join" component={Join} />
@@ -33,7 +33,7 @@ class App extends Component {
               <Route path="/course/:id" component={Course} />
             </Switch>
           </div>
-        </Router>
+        </Router>        
       </AppOuter>
     );
   }
@@ -52,8 +52,6 @@ export default connect(null, actions)(App);
 
 const AppOuter = styled.div`
 font-family: 'Lato', sans-serif;
+margin:-8px;
 `
 
-const PushNav = styled.div`
-margin-top:70px;
-`
