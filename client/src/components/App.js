@@ -7,11 +7,12 @@ import Join from './Join';
 import Login from './Login';
 import Pricing from './Pricing';
 import CourseAdd from './Courses/CourseAdd';
-import Course from './Course'
+import Course from './Course';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import styled from 'styled-components'
-import Footer from './Footer.js'
+import styled from 'styled-components';
+import Footer from './Footer.js';
+import Watch from './Watch';
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
       <AppOuter>
         <Router>
           <div>
-            <Header />            
+            <Header />
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route path="/join" component={Join} />
@@ -30,10 +31,12 @@ class App extends Component {
               <Route path="/add" component={CourseAdd} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/courses" component={Courses} />
-              <Route path="/course/:id" component={Course} />
+              <Route exact path="/course/:id" component={Course} />
+              <Route path="/course/:id/watch" component={Watch} />
             </Switch>
           </div>
-        </Router>        
+        </Router>
+        {/* <Footer /> */}
       </AppOuter>
     );
   }
@@ -49,9 +52,7 @@ class App extends Component {
 
 export default connect(null, actions)(App);
 
-
-const AppOuter = styled.div`
-font-family: 'Lato', sans-serif;
-margin:-8px;
-`
-
+const AppOuter = styled.div`  
+  font-family: 'Lato', sans-serif;
+  margin: -8px;
+`;

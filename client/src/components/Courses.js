@@ -16,9 +16,7 @@ class Courses extends React.Component {
 
   renderCourses() {
     return this.state.courses.map(course => {
-      console.log(course)   
-      return (
-             
+      return (             
         <CourseCard course={course}/>
       );
     });
@@ -41,7 +39,7 @@ class Courses extends React.Component {
 export default Courses;
 
 const CourseColumn = styled.div`
-  width: 70%;
+  width: 80%;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -64,8 +62,8 @@ const CoursesTitle = styled.div`
 const CourseBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
-  height: 250px;
+  width: 270px;
+  height: 340px;
   -webkit-box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);

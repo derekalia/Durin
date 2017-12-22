@@ -1,8 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { Tweet } from 'react-twitter-widgets';
+import CourseById from './CourseById';
+
 
 class Landing extends React.Component {
   state = {};
@@ -21,31 +24,9 @@ class Landing extends React.Component {
           <CoursesTitleTop>Learn the latest blockchain tools</CoursesTitleTop>
           <TopCourses>
             <CoursesHolder name="CoursesHolder">
-              <Link to={'/course/' + 'intro-eth'} style={{ textDecoration: 'none' }}>
-                <CourseBox name="CourseBox">
-                  <CoursesBoxImg src="https://cdn.dribbble.com/users/60166/screenshots/3959197/ninja_shinobi_1x.jpg" />
-                  <CoursesBoxTitle>Intro to Ethereum</CoursesBoxTitle>
-                  <CoursesBoxAuthor>Tom Watts</CoursesBoxAuthor>
-                </CourseBox>
-              </Link>
-            </CoursesHolder>
-            <CoursesHolder name="CoursesHolder">
-              <Link to={'/course/' + 'intro-eth'} style={{ textDecoration: 'none' }}>
-                <CourseBox name="CourseBox">
-                  <CoursesBoxImg src="https://cdn.dribbble.com/users/60166/screenshots/3959197/ninja_shinobi_1x.jpg" />
-                  <CoursesBoxTitle>Intro to Ethereum</CoursesBoxTitle>
-                  <CoursesBoxAuthor>Tom Watts</CoursesBoxAuthor>
-                </CourseBox>
-              </Link>
-            </CoursesHolder>
-            <CoursesHolder name="CoursesHolder">
-              <Link to={'/course/' + 'intro-eth'} style={{ textDecoration: 'none' }}>
-                <CourseBox name="CourseBox">
-                  <CoursesBoxImg src="https://cdn.dribbble.com/users/60166/screenshots/3959197/ninja_shinobi_1x.jpg" />
-                  <CoursesBoxTitle>Intro to Ethereum</CoursesBoxTitle>
-                  <CoursesBoxAuthor>Tom Watts</CoursesBoxAuthor>
-                </CourseBox>
-              </Link>
+              <CourseById id={'5a19d397cec41aa0ec8cd410'} />
+              <CourseById id={'5a18bef38a225da0719fc636'} />
+              <CourseById id={'5a2f9afc0dc9ce0ab19badd7'} />
             </CoursesHolder>
           </TopCourses>
         </SectionGradient>
@@ -104,6 +85,7 @@ const TwitterHolder = styled.div`
 `;
 const LandingHolder = styled.div`
   display: flex;
+  flex:1;
   justify-content: center;
   flex-direction: column;
 `;

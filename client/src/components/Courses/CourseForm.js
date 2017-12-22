@@ -4,6 +4,7 @@ import CourseField from './CourseField';
 import '../../../node_modules/video-react/dist/video-react.css'; // import css
 import { Player } from 'video-react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 class CourseForm extends React.Component {
   renderFields() {
@@ -25,7 +26,7 @@ class CourseForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <OuterForm>
         CourseForm
         <form
           onSubmit={this.props.handleSubmit(values => {
@@ -39,7 +40,7 @@ class CourseForm extends React.Component {
         <Link to="/">
           <button>cancel</button>
         </Link>
-      </div>
+      </OuterForm>
     );
   }
 }
@@ -78,3 +79,10 @@ export default reduxForm({
   form: 'courseForm',
   destroyOnUnmount: false
 })(CourseForm);
+
+
+const OuterForm = styled.div`
+margin-top:80px;
+margin-left:10px;
+`
+

@@ -82,7 +82,7 @@ const HeaderHolder = styled.div`
   // height: 50px;
   background-color: white;
   justify-content: space-between;
-  margin-left: -8px;
+  // margin-left: -8px;
   align-items: center;
 `;
 const HeaderTitle = styled.div`

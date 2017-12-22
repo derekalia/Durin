@@ -27,9 +27,11 @@ export default CourseCard;
 
 const CourseHolder = styled.div`
   display: flex;
+  background-color:white;
   flex-direction: row;
   justify-content: space-evenly;
   margin: 15px;
+  border-radius: 5px;
 `;
 const CourseTitle = styled.div`
   font-size: 30px;
@@ -40,8 +42,8 @@ const CourseTitle = styled.div`
 const CourseBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 240px;
-  height: 300px;
+  width: 260px;
+  height: 350px;
   -webkit-box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.44);

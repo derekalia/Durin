@@ -6,8 +6,8 @@ const Course = mongoose.model('courses');
 
 module.exports = app => {
   app.post('/api/course_submit', requireLogin, requireSubscription, async (req, res) => {
-    const { title, description, video, length, author, content, image, linkTitle } = req.body;
-
+    const { title, description, video, length, author, content, image, linkTitle, free } = req.body;
+    console.log('this is req ', req.body);
     const course = new Course({
       title,
       linkTitle,
@@ -18,6 +18,7 @@ module.exports = app => {
       votes: 0,
       length,
       image,
+      free,
       _user: req.user.id,
       dateCreated: Date.now()
     });
@@ -32,38 +33,19 @@ module.exports = app => {
   });
 
   app.get('/api/courses', async (req, res) => {
-    // Course.findById(id).then(user => {
-    //   done(null, user);
-    // });
-    // console.log('here')
-    // Course.find({}).then(courses => {
-    //   var courseMap = {};
-
-    //   courses.forEach(function(course) {
-    //     courseMap[course._id] = course;
-    //   });
-
-    //   res.send(courseMap);
-    // });
-
     Course.find({}, function(err, courses) {
       var userMap = {};
-      // courses.forEach(function(user) {
-      //   userMap[user._id] = user;
-      // });
-
       res.send(courses);
     });
   });
 
-  app.get('/api/course_details/:id', async (req, res) => {
-
-    // console.log('req ', req.params.id);
+  app.get('/api/course_details_from_linkTitle/:id', async (req, res) => {
     const course = await Course.findOne({ linkTitle: req.params.id });
-    // console.log('course ', course);
-    // Course.find({}, function(err, courses) {
+    res.send(course);
+  });
 
-      res.send(course);
-    // });
+  app.get('/api/course_details', async (req, res) => {
+    const course = await Course.findOne({ _id: req.query.id });
+    res.send(course);
   });
 };

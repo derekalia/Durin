@@ -25,6 +25,4 @@ class CourseAdd extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'courseForm'
-})(CourseAdd);
+export default reduxForm({form: 'courseForm'})(CourseAdd);

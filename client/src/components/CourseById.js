@@ -3,39 +3,20 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Player } from 'video-react';
+import CourseCard from './CourseCard';
 
 class Course extends React.Component {
   state = {
     course: null
   };
 
-  componentWillMount = async () => {
-    const deets = await axios.get('/api/course_details_from_linkTitle/' + this.props.match.params.id);
+  componentWillMount = async (id = '5a18bef38a225da0719fc636') => {
+    const deets = await axios.get('/api/course_details', { params: { id: this.props.id } });
     this.setState({ course: deets.data });
   };
 
   render() {
-    return (
-      <LandingHolder>
-        <LandingHolderText>Course</LandingHolderText>
-        <div>
-          {this.state.course ? (
-            <CourseHolder>
-              <Title>{this.state.course.title}</Title>
-              <Author>By {this.state.course.author}</Author>
-
-              <Image src={this.state.course.image} />
-              <Description>{this.state.course.description}</Description>
-
-              {/* <Player>
-                  <source src={this.state.course.source} />
-                </Player> */}
-              <WatchButton to={'/course/' + this.state.course.linkTitle + '/watch'}>Watch Now</WatchButton>
-            </CourseHolder>
-          ) : null}
-        </div>
-      </LandingHolder>
-    );
+    return <div>{this.state.course ? <CourseCard course={this.state.course} /> : null}</div>;
   }
 }
 
