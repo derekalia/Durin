@@ -19,10 +19,13 @@ export const handleToken = token => async dispatch => {
   });
 };
 
-export const submitCourse = (values,history) => async dispatch => {
-  const res = await axios.post('/api/course_submit',values)
-  
-  history.push('/courses')
-
+export const submitCourse = (values, history) => async dispatch => {
+  const res = await axios.post('/api/course_submit', values);
+  history.push('/courses');
   return { type: 'SUBMIT_COURSE' };
 };
+
+export const setCourse = course => {
+  return { type: 'SET_COURSE', course };
+};
+
