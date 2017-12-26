@@ -47,7 +47,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={routerProps => {
-      console.log(rest.props.auth);
+            
+      //if not a user
       if (rest.props.auth === false || !rest.props.auth) {
         return (
           <Redirect

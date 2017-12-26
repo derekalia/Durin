@@ -32,7 +32,7 @@ passport.use(
         const customer = await stripe.customers.create({
           description: profile.displayName
         });
-        console.log('stripe passport ', customer);
+        // console.log('stripe passport ', customer);
 
         //create user in db
         const newUser = await new User({

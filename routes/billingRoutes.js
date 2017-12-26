@@ -17,7 +17,7 @@ module.exports = app => {
       ]
     });
 
-    console.log('sub ', sub);
+    // console.log('sub ', sub);
 
     if (sub.id) {
       req.user.status = 'paid';
