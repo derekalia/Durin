@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Player } from 'video-react';
+import { connect } from 'react-redux';
+import { setCourse } from '../actions';
 
 class Course extends React.Component {
   state = {
@@ -12,6 +14,9 @@ class Course extends React.Component {
   componentWillMount = async () => {
     const deets = await axios.get('/api/course_details_from_linkTitle/' + this.props.match.params.id);
     this.setState({ course: deets.data });
+
+    //set to redux state
+    this.props.setCourse(deets.data);
   };
 
   render() {
@@ -21,16 +26,15 @@ class Course extends React.Component {
         <div>
           {this.state.course ? (
             <CourseHolder>
+            
               <Title>{this.state.course.title}</Title>
               <Author>By {this.state.course.author}</Author>
 
               <Image src={this.state.course.image} />
               <Description>{this.state.course.description}</Description>
 
-              {/* <Player>
-                  <source src={this.state.course.source} />
-                </Player> */}
               <WatchButton to={'/course/' + this.state.course.linkTitle + '/watch'}>Watch Now</WatchButton>
+
             </CourseHolder>
           ) : null}
         </div>
@@ -39,7 +43,15 @@ class Course extends React.Component {
   }
 }
 
-export default Course;
+const mapDispatchToProps = dispatch => {
+  return {
+    setCourse: course => {
+      dispatch(setCourse(course));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Course);
 
 const LandingHolder = styled.div`
   display: flex;

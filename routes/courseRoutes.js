@@ -22,7 +22,6 @@ module.exports = app => {
       _user: req.user.id,
       dateCreated: Date.now()
     });
-
     try {
       await course.save();
       console.log(course.id);
@@ -46,6 +45,11 @@ module.exports = app => {
 
   app.get('/api/course_details', async (req, res) => {
     const course = await Course.findOne({ _id: req.query.id });
+    res.send(course);
+  });
+  
+  app.get('/api/get_video/:id', requireLogin, requireSubscription, async (req, res) => {
+    const course = await Course.findOne({ linkTitle: req.params.id });
     res.send(course);
   });
 };
