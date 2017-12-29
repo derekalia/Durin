@@ -18,9 +18,9 @@ class CheckoutForm extends React.Component {
     // tokenize, since there's only one in this group.
 
     this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
-      console.log(token);
+      // console.log(token);
       this.props.handleToken(token).then(() => {
-        console.log('this.props.auth', this.props.auth);
+        // console.log('this.props.auth', this.props.auth);
         if (this.props.auth.status == 'paid') {
           this.props.history.push('/courses');
         }

@@ -39,7 +39,7 @@ class Courses extends React.Component {
 export default Courses;
 
 const CourseColumn = styled.div`
-  width: 80%;
+  width: 85%;
   align-self: center;
   display: flex;
   flex-direction: column;

@@ -22,19 +22,28 @@ class Course extends React.Component {
   render() {
     return (
       <LandingHolder>
-        <LandingHolderText>Course</LandingHolderText>
+        {/* <LandingHolderText>Course</LandingHolderText> */}
         <div>
           {this.state.course ? (
             <CourseHolder>
-            
-              <Title>{this.state.course.title}</Title>
-              <Author>By {this.state.course.author}</Author>
-
-              <Image src={this.state.course.image} />
-              <Description>{this.state.course.description}</Description>
-
-              <WatchButton to={'/course/' + this.state.course.linkTitle + '/watch'}>Watch Now</WatchButton>
-
+              <Top>
+                <TopLeft>
+                  <Title>{this.state.course.title}</Title>
+                  <Author>By {this.state.course.author}</Author>
+                  <CourseType>Pro Course</CourseType>
+                </TopLeft>
+                <TopRight>
+                  <WatchButton to={'/course/' + this.state.course.linkTitle + '/watch'}>Watch Now</WatchButton>
+                  <UpdatedOn>Updated: {this.state.course.dateUpdated}</UpdatedOn>
+                </TopRight>
+              </Top>
+              <PreviewHolder>
+                <Image src={this.state.course.image} />
+              </PreviewHolder>
+              <TextArea>
+                <AboutTitle>Overview</AboutTitle>
+                <Description>{this.state.course.description}</Description>
+              </TextArea>
             </CourseHolder>
           ) : null}
         </div>
@@ -69,26 +78,95 @@ const CourseHolder = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 35px;
-  margin: 10px;
+  font-size: 32px;
+  font-weight: bold;
 `;
 
 const Author = styled.div`
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 16px;
 `;
 
 const Image = styled.img`
-  width: 70%;
+  width: 100%;
+  height: 100%;
 `;
 
 const Description = styled.div`
   font-size: 16px;
-  margin: 20px;
+  margin-top: 20px;
+  
 `;
 
 const WatchButton = styled(Link)`
+  width: 140px;
+  text-align: center;
+  height: 60px;
+  background-color: #4a90e2;
+  border: none;
+  color: white;
   font-size: 16px;
-  margin: 20px;
-  background-color: blue;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-decoration: none;
 `;
+
+const Top = styled.div`
+  display: flex;
+  flex-direction: 'row';
+  width: 70%;
+  justify-content: space-between;
+  height: 120px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+const TopLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const TopRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+const CourseType = styled.div`
+  font-size: 16px;
+`;
+
+const UpdatedOn = styled.div`
+  font-size: 16px;
+`;
+
+const PreviewHolder = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+`;
+
+const AboutTitle = styled.div`
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+`;
+
+const TextArea = styled.div`
+display:flex;
+width: 70%;
+margin-top:30px;
+flex-direction: column;
+}
+
+`;
+
+// const WatchButton = styled.button`
+//   width: 120px;
+//   height: 50px;
+//   background-color: #4a90e2;
+//   border: none;
+//   color: white;
+//   font-size: 15px;
+// `;
