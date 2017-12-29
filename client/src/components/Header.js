@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { propTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import durin from '../media/durin_black.svg';
+import DropdownMenu from 'react-dd-menu';
+import '../../node_modules/react-dd-menu/dist/react-dd-menu.css';
 
 class Header extends React.Component {
-  state = {};
+  state = { isMenuOpen: false };
+
+  toggle = () => {
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+  };
+
+  close = () => {
+    this.setState({ isMenuOpen: false });
+  };
+
+  click = () => {
+    console.log('You clicked an item');
+  };
 
   renderContent() {
     switch (this.props.auth) {
@@ -29,6 +43,12 @@ class Header extends React.Component {
           </HeaderItem>
         ];
       default:
+        const menuOptions = {
+          isOpen: this.state.isMenuOpen,
+          close: this.close,
+          toggle: <HeaderItemButton onClick={this.toggle}>{this.props.auth.name}</HeaderItemButton>,
+          align: 'center'
+        };
         return (
           <HeaderItemHolder>
             <HeaderItem>
@@ -42,10 +62,18 @@ class Header extends React.Component {
             <HeaderItem>
               <LinkStyle to="/add">Add Course</LinkStyle>
             </HeaderItem>
-            <HeaderItem>{this.props.auth.name}</HeaderItem>
             <HeaderItem>
-              <ALinkStyle href="/api/logout">Logout</ALinkStyle>
-            </HeaderItem>
+              <DropdownMenu {...menuOptions}>
+                <div style={{ width: '100px' }}>
+                  <div>
+                  <ALinkStyle href="/account">Account</ALinkStyle>
+                  </div>
+                  <div>
+                    <ALinkStyle href="/api/logout">Logout</ALinkStyle>
+                  </div>
+                </div>
+              </DropdownMenu>
+            </HeaderItem>            
           </HeaderItemHolder>
         );
     }
@@ -75,7 +103,6 @@ export default connect(mapStateToProps)(Header);
 const HeaderHolder = styled.div`
   display: flex;
   flex-direction: row;
-  overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
@@ -98,6 +125,17 @@ const HeaderItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+const HeaderItemButton = styled.button`
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  outline: none;
+  font-family: 'Lato', sans-serif;
 `;
 
 const HeaderItemHolder = styled.div`

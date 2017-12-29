@@ -13,6 +13,7 @@ import * as actions from '../actions';
 import styled from 'styled-components';
 import Footer from './Footer.js';
 import Watch from './Watch';
+import Account from './UserSettings'
 
 class App extends Component {
   componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
               <Route path="/add" component={CourseAdd} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/courses" component={Courses} />
+              <Route path="/account" component={Account} />
               <Route exact path="/course/:id" component={Course} />
               <PrivateRoute path="/course/:id/watch" component={Watch} props={this.props} />
             </Switch>

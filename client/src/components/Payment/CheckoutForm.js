@@ -2,7 +2,6 @@ import React from 'react';
 import { injectStripe } from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import styled from 'styled-components';
@@ -17,7 +16,7 @@ class CheckoutForm extends React.Component {
     // Within the context of `Elements`, this call to createToken knows which Element to
     // tokenize, since there's only one in this group.
 
-    this.props.stripe.createToken({ name: 'Jenny Rosen' }).then(({ token }) => {
+    this.props.stripe.createToken({ name: this.props.auth.name }).then(({ token }) => {
       // console.log(token);
       this.props.handleToken(token).then(() => {
         // console.log('this.props.auth', this.props.auth);

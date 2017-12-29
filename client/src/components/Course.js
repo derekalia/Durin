@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Player } from 'video-react';
 import { connect } from 'react-redux';
 import { setCourse } from '../actions';
+import  moment from 'moment';
 
 class Course extends React.Component {
   state = {
@@ -34,7 +35,7 @@ class Course extends React.Component {
                 </TopLeft>
                 <TopRight>
                   <WatchButton to={'/course/' + this.state.course.linkTitle + '/watch'}>Watch Now</WatchButton>
-                  <UpdatedOn>Updated: {this.state.course.dateUpdated}</UpdatedOn>
+                  <UpdatedOn>Updated: {moment(this.state.course.dateUpdated).format('L')}</UpdatedOn>
                 </TopRight>
               </Top>
               <PreviewHolder>
@@ -138,6 +139,7 @@ const CourseType = styled.div`
 
 const UpdatedOn = styled.div`
   font-size: 16px;
+  text-align: right;
 `;
 
 const PreviewHolder = styled.div`
@@ -150,7 +152,7 @@ const AboutTitle = styled.div`
   display: flex;
   font-size: 20px;
   font-weight: bold;
-  justify-content: center;
+  /* justify-content: center; */
 `;
 
 const TextArea = styled.div`

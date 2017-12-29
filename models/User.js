@@ -14,6 +14,7 @@ const userSchema = new Schema({
     status: {type:String, default: 'new'},
     courses: [courseSchema],
     dateCreated: {type:Date, default:Date.now()}, 
+    subscriptionId:String
 });
 
 mongoose.model('users', userSchema);
