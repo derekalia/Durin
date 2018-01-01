@@ -59,21 +59,23 @@ class Header extends React.Component {
                 <LinkStyle to="/pricing">Pricing</LinkStyle>
               </HeaderItem>
             )}
-            <HeaderItem>
-              <LinkStyle to="/add">Add Course</LinkStyle>
-            </HeaderItem>
+            {this.props.auth.role === 'admin' && (
+              <HeaderItem>
+                <LinkStyle to="/add">Add Course</LinkStyle>
+              </HeaderItem>
+            )}
             <HeaderItem>
               <DropdownMenu {...menuOptions}>
                 <div style={{ width: '100px' }}>
                   <div>
-                  <ALinkStyle href="/account">Account</ALinkStyle>
+                    <ALinkStyle href="/account">Account</ALinkStyle>
                   </div>
                   <div>
                     <ALinkStyle href="/api/logout">Logout</ALinkStyle>
                   </div>
                 </div>
               </DropdownMenu>
-            </HeaderItem>            
+            </HeaderItem>
           </HeaderItemHolder>
         );
     }

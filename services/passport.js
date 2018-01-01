@@ -38,7 +38,9 @@ passport.use(
         const newUser = await new User({
           authToken: profile.id,
           name: profile.displayName,
-          stripeId: customer.id
+          stripeId: customer.id,
+          email: profile.email,
+          role: 'user'
         }).save();
         done(null, newUser);
       }

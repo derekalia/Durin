@@ -17,8 +17,10 @@ class Pricing extends React.Component {
       );
     } else {
       //if not just have a sign up button that takes them to the join section
-      return (    
-     <JoinButton to="/join"><JoinText>Start</JoinText></JoinButton> 
+      return (
+        <JoinButton to="/join">
+          <JoinText>Start</JoinText>
+        </JoinButton>
       );
     }
   }
@@ -34,6 +36,7 @@ class Pricing extends React.Component {
           {/* <JoinButton to="/pricing/start"><JoinText>Start</JoinText></JoinButton> */}
           {this.renderPaymentInfo()}
         </MiddleBox>
+        <Terms>By subscribing to durin.io you agree to the terms and conditions.</Terms>
       </Holder>
     );
   }
@@ -46,6 +49,12 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps)(Pricing);
 
 const Holder = styled.div``;
+
+const Terms = styled.div`
+text-align:center;
+`;
+
+
 
 const PaymentHolder = styled.div`
   /* width:350px; */

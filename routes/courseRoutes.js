@@ -6,8 +6,8 @@ const Course = mongoose.model('courses');
 
 module.exports = app => {
   app.post('/api/course_submit', requireLogin, requireSubscription, async (req, res) => {
-    const { title, description, video, length, author, content, image, linkTitle, free } = req.body;
-    // console.log('this is req ', req.body);
+    const { title, description, video, length, author, content, image, linkTitle, free, preview } = req.body;
+    console.log('this is req ', req.body);
     const course = new Course({
       title,
       linkTitle,
@@ -19,6 +19,7 @@ module.exports = app => {
       length,
       image,
       free,
+      preview,
       _user: req.user.id,
       dateCreated: Date.now()
     });

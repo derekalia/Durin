@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Player } from 'video-react';
 import { connect } from 'react-redux';
 import { setCourse } from '../actions';
-import  moment from 'moment';
+import moment from 'moment';
 
 class Course extends React.Component {
   state = {
@@ -95,7 +95,6 @@ const Image = styled.img`
 const Description = styled.div`
   font-size: 16px;
   margin-top: 20px;
-  
 `;
 
 const WatchButton = styled(Link)`
@@ -161,7 +160,6 @@ width: 70%;
 margin-top:30px;
 flex-direction: column;
 }
-
 `;
 
 // const WatchButton = styled.button`

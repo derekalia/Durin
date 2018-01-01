@@ -10,6 +10,14 @@ const CourseReview = ({ onCancel, formValues, submitCourse, history }) => {
       <h5>Please confirm details</h5>
       <div>{formValues.title}</div>
       <div>{formValues.author}</div>
+      <div>{formValues.category}</div>
+      <div>{formValues.description}</div>
+      <div>{formValues.content}</div>
+      <div>{formValues.image}</div>
+      <div>{formValues.video}</div>
+      <div>{formValues.preview}</div>
+      <div>{formValues.linkTitle}</div>
+      <div>{formValues.free}</div>
       <button onClick={onCancel}>cancel</button>
       <button onClick={() => submitCourse(formValues,history)}>finished</button>
     </OuterForm>

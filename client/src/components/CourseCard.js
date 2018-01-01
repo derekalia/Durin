@@ -8,12 +8,17 @@ class CourseCard extends React.Component {
       <CourseHolder name="CoursesHolder">
         <Link to={'/course/' + this.props.course.linkTitle} style={{ textDecoration: 'none' }}>
           <CourseBox name="CourseBox">
-            <CourseBoxImg src={this.props.course.image} />
+            <ImgHolder>
+              <CourseBoxImg src={this.props.course.image} />
+            </ImgHolder>
+
             <CourseBoxTitle>{this.props.course.title}</CourseBoxTitle>
 
             <CourseBoxAuthor>{this.props.course.author}</CourseBoxAuthor>
             <CourseBoxBottom>
-              <CourseBoxBottomLeft>Ethereum</CourseBoxBottomLeft>
+              <CourseBoxBottomLeft>
+                <Tag>ETHEREUM</Tag>
+              </CourseBoxBottomLeft>
               <CourseBoxBottomRight>PRO</CourseBoxBottomRight>
             </CourseBoxBottom>
           </CourseBox>
@@ -27,7 +32,7 @@ export default CourseCard;
 
 const CourseHolder = styled.div`
   display: flex;
-  background-color:white;
+  background-color: white;
   flex-direction: row;
   justify-content: space-evenly;
   margin: 15px;
@@ -50,14 +55,14 @@ const CourseBox = styled.div`
   border-radius: 5px;
 `;
 
-const CourseBoxImg = styled.img`
-  width: 100%;
+const CourseBoxImg = styled.img`  
   height: 145px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 `;
 
 const CourseBoxTitle = styled.div`
+  font-size: 22px;
   text-align: center;
   color: black;
   flex: 1;
@@ -72,18 +77,20 @@ const CourseBoxAuthor = styled.div`
 `;
 
 const CourseBoxBottom = styled.div`
-  display:flex;
-  flex-direction:row;  
+  display: flex;
+  flex-direction: row;
 `;
 
 const CourseBoxBottomLeft = styled.div`
   color: black;
+  display: flex;
   margin: 5px;
   flex: 3;
 `;
 
 const CourseBoxBottomRight = styled.div`
-  text-align:right;
+  font-weight: bold;
+  text-align: right;
   color: black;
   margin: 5px;
   flex: 1;
@@ -91,4 +98,19 @@ const CourseBoxBottomRight = styled.div`
 
 const OuterBox = styled.div`
   margin-top: 50px;
+`;
+
+const ImgHolder = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 10px;
+`;
+
+const Tag = styled.div`
+  background-color: #4a90e2;
+  color: white;
+  padding: 2px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 11px;
 `;

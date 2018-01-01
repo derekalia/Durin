@@ -31,14 +31,14 @@ module.exports = app => {
   });
 
   app.post('/api/stripe/del', requireLogin, async (req, res) => {
-    console.log('here', req.user.subscriptionId);
-
-    await stripe.subscriptions.del(req.user.subscriptionId, function(err, confirmation) {
-      console.log('here2', confirmation);
+    
+    await stripe.subscriptions.del(req.user.subscriptionId, { at_period_end: true },function(err, confirmation) {
+      console.log('confirmation', confirmation);
       console.log('err', err);
     });
-    //change users status and plan
-    
+  
+
+    //this is not going to work. what if i cancel but still have 20 days left? now i can watch any videos
 
     req.user.status = 'canceled';
     req.user.plan = 'none';
