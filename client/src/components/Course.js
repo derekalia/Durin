@@ -61,7 +61,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Course);
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Course);
 
 const LandingHolder = styled.div`
   display: flex;

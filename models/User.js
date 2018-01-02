@@ -15,6 +15,7 @@ const userSchema = new Schema({
   preview: String,
   dateCreated: { type: Date, default: Date.now() },
   subscriptionId: String,
+  endSubOnDay: Date,
   role: String
 });
 

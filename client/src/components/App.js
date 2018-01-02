@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import Footer from './Footer.js';
 import Watch from './Watch';
 import Account from './UserSettings'
+import moment from 'moment'
 
 class App extends Component {
   componentDidMount() {
@@ -60,8 +61,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
             }}
           />
         );
-        //if paid
-      } else if (rest.props.auth.status === 'paid') {        
+        //if paid 
+      } else if (rest.props.auth.status === 'paid' || (rest.props.auth.status == 'canceled' && moment(rest.props.auth.endSubOnDay).format() > moment().format()) ) {        
         return <Component {...routerProps} />;        
       } else {
         return (
